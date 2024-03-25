@@ -1,6 +1,6 @@
 # Mind_Maze
 
-Welcome to the Number Guessing Game! This project is a fun and interactive way for users to guess a number within a specified range. It's designed to be both entertaining and educational, providing a practical example of Python programming concepts such as loops, conditionals, and user input.
+Welcome to the Mind_Maze! This project is a fun and interactive way for users to guess a number within a specified range. It's designed to be both entertaining and educational, providing a practical example of Python programming concepts such as loops, conditionals, and user input.
 
 ## Features
 
