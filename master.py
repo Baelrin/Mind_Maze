@@ -15,20 +15,25 @@ def get_user_input(prompt, min_value=1):
 
 def main():
     top_of_range = get_user_input("Type a number: ")
-    random_number = random.randrange(1, top_of_range + 1)
+    random_number = random.randint(1, top_of_range)
     guesses = 0
+    game_over = False
 
-    while True:
+    correct_guess_message = "You got it!"
+    above_message = "Nope! You were above the number!"
+    below_message = "Nope! You were below the number!"
+
+    while not game_over:
         guesses += 1
         user_guess = get_user_input("Make a guess: ")
 
         if user_guess == random_number:
-            print("You got it!")
-            break
+            print(correct_guess_message)
+            game_over = True
         elif user_guess > random_number:
-            print("Nope! You were above the number!")
+            print(above_message)
         else:
-            print("Nope! You were below the number!")
+            print(below_message)
 
     print(f"You got it in {guesses} guesses")
 
