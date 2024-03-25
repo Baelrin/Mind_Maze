@@ -4,15 +4,26 @@ from enum import Enum
 
 
 class Difficulty(Enum):
+    """
+    Enum for Difficulty levels with 3 types: EASY, MEDIUM, HARD.
+    """
+
     EASY = 1
     MEDIUM = 2
     HARD = 3
 
 
+# Dictionary mapping difficulty levels to top numbers in the guessing game range.
 TOP_OF_RANGE = {Difficulty.EASY: 10, Difficulty.MEDIUM: 100, Difficulty.HARD: 1000}
 
 
 def print_message(message, color_code=None):
+    """
+    Prints a message with optional color coding for terminals that support it.
+
+    :param message: The message to be printed.
+    :param color_code: Optional; the color code to wrap the message in.
+    """
     if color_code and sys.platform != "win32":
         print(f"\033[{color_code}m{message}\033[0m")
     else:
@@ -20,6 +31,13 @@ def print_message(message, color_code=None):
 
 
 def get_user_input(prompt, min_value=1):
+    """
+    Prompts the user for input until a valid integer above a given minimum value is entered.
+
+    :param prompt: The message to display to the user.
+    :param min_value: The minimum valid value the user can enter.
+    :return: The user's input as an integer.
+    """
     while True:
         try:
             value = int(input(prompt))
@@ -32,6 +50,11 @@ def get_user_input(prompt, min_value=1):
 
 
 def select_difficulty():
+    """
+    Prompts the user to select a difficulty level for the game.
+
+    :return: The user's selected difficulty level as an integer (1, 2, or 3).
+    """
     while True:
         print("Select difficulty level:")
         print("1. Easy")
@@ -44,6 +67,9 @@ def select_difficulty():
 
 
 def main():
+    """
+    Main function to run the guessing game. Handles the game logic and user interactions.
+    """
     difficulty = Difficulty(select_difficulty())
     top_of_range = TOP_OF_RANGE[difficulty]
 
