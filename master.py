@@ -1,28 +1,26 @@
 import random
 
-top_of_range = input("Type a number: ")
 
-if top_of_range.isdigit():
-    top_of_range = int(top_of_range)
+def get_user_input(prompt, min_value=1):
+    while True:
+        try:
+            value = int(input(prompt))
+            if value < min_value:
+                print(f"Please type a number larger than {min_value} next time.")
+                continue
+            return value
+        except ValueError:
+            print("Please type a number next time.")
 
-    if top_of_range <= 0:
-        print("Please type a number larger than 0 next time.")
-        quit()
-else:
-    print("Please type a number next time.")
-    quit()
 
-random_number = random.randint(0, top_of_range)
+top_of_range = get_user_input("Type a number: ")
+
+random_number = random.randint(1, top_of_range)
 guesses = 0
 
 while True:
     guesses += 1
-    user_guess = input("Make a guess: ")
-    if user_guess.isdigit():
-        user_guess = int(user_guess)
-    else:
-        print("Please type a number next time.")
-        continue
+    user_guess = get_user_input("Make a guess: ")
 
     if user_guess == random_number:
         print("You got it!")
