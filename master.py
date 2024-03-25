@@ -15,7 +15,7 @@ def get_user_input(prompt, min_value=1):
 
 def main():
     top_of_range = get_user_input("Type a number: ")
-    random_number = random.randint(1, top_of_range)
+    random_number = random.randrange(1, top_of_range + 1)
     guesses = 0
 
     while True:
