@@ -1,15 +1,29 @@
 import random
+from enum import Enum
+import sys
+
+
+class Difficulty(Enum):
+    EASY = 1
+    MEDIUM = 2
+    HARD = 3
+
+
+TOP_OF_RANGE = {Difficulty.EASY: 10, Difficulty.MEDIUM: 100, Difficulty.HARD: 1000}
 
 
 def print_colored(message, color_code):
-    print(f"\033[{color_code}m{message}\033[0m")
+    if sys.platform == "win32":
+        print(message)
+    else:
+        print(f"\033[{color_code}m{message}\033[0m")
 
 
 def get_user_input(prompt, min_value=1):
     while True:
         try:
             value = int(input(prompt))
-            if value < min_value:
+            if value <= min_value:
                 print_colored("Please type a number larger than 0 next time.", 31)
                 continue
             return value
@@ -22,17 +36,16 @@ def select_difficulty():
     print("1. Easy")
     print("2. Medium")
     print("3. Hard")
-    return get_user_input("Your choice: ")
+    choice = get_user_input("Your choice: ")
+    if choice not in [1, 2, 3]:
+        print_colored("Invalid choice. Please select a number between 1 and 3.", 31)
+        return select_difficulty()
+    return choice
 
 
 def main():
-    difficulty = select_difficulty()
-    if difficulty == 1:
-        top_of_range = 10
-    elif difficulty == 2:
-        top_of_range = 100
-    else:
-        top_of_range = 1000
+    difficulty = Difficulty(select_difficulty())
+    top_of_range = TOP_OF_RANGE[difficulty]
 
     random_number = random.randint(1, top_of_range)
     guesses = 0
