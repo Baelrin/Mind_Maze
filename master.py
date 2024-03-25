@@ -23,7 +23,7 @@ def get_user_input(prompt, min_value=1):
     while True:
         try:
             value = int(input(prompt))
-            if value <= min_value:
+            if value < min_value and min_value != 0:
                 print_colored("Please type a number larger than 0 next time.", 31)
                 continue
             return value
